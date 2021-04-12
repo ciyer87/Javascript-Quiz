@@ -100,8 +100,9 @@ function timer() {
 function renderQuestion() {
     test = get("quiz-body");
     if (pos >= myQuestions.length) {
-        test.innerHTML = "<h2>You got " + correct + " of " + myQuestions.length + " questions correct</h2>";
-        get("quiz-body").innerHTML = "Test completed";
+        endGame(timeLeft);
+        get("status").innerHTML = "<h2>You got " + correct + " of " + myQuestions.length + " questions correct</h2>";
+        test.innerHTML = "Test completed.  Your final score is: " + timeLeft;
         // resets the variable to allow users to restart the test
         pos = 0;
         correct = 0;
@@ -142,9 +143,17 @@ function checkAnswer() {
     }
     // changes position of which character user is on
     pos++;
+
     // then the renderQuestion function runs again to go to next question
     renderQuestion();
 }
 // Add event listener to call renderQuestion on page load event
 //window.addEventListener("load", renderQuestion);
+
+var endGame = function (timeLeft) {
+    console.log("time left in endGame ", timeLeft);
+    clearInterval(timeInterval); // Stop Timer
+    quizEl.innerHTML = "<h2>All Done!</h2><h3>Your final score is " + (timeLeft) + "</h3>";
+}
+
 startBtn.onclick = timer;
