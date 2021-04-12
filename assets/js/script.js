@@ -9,6 +9,13 @@ Description of the variables:
     choices - list of possible answers (multiple choice)
     chA, chB, chC, chD - represents each line of the multiple choice responses */
 var pos = 0, test, test_status, question, choice, choices, chA, chB, chC, chD, correct = 0;
+var startBtn = document.querySelector('#start');
+var instructionsEl = document.querySelector('#instructions');
+var timerEl = document.querySelector('#countdown');
+var quizEl = document.querySelector('#quiz-body');
+var statusEl = document.querySelector('#status');
+var timeInterval;
+var timeLeft = 0;
 // this is a multidimensional array with 5 inner array elements with 6 elements inside them 
 
 var myQuestions = [
@@ -61,19 +68,40 @@ var myQuestions = [
     }
 ];
 
-
 // this get function is short for the getElementById function  
 function get(x) {
     return document.getElementById(x);
+}
+quizEl.textContent = "Try to answer the following code - related questions withn the time limit.Keep in mind that incorrect answers will penalize your score / time by ten seconds!";
+
+
+function timer() {
+    timeLeft = 60;
+    startBtn.setAttribute("style", "display: none"); // Hide start button on start
+
+    timeInterval = setInterval(function () {
+        // While timer is running
+        if (timeLeft > -1) {
+            timerEl.textContent = 'Time: ' + timeLeft; // Display timer on page
+            timeLeft--;
+        }
+        // After timer hits zero
+        else {
+            timerEl.textContent = 'Times Up!'; // Display times up message
+            clearInterval(timeInterval); // Reset Timer
+            endGame(timeLeft);
+        }
+    }, 1000);
+    renderQuestion();
 }
 
 // this function renders a question for display on the page
 
 function renderQuestion() {
-    test = get("test");
+    test = get("quiz-body");
     if (pos >= myQuestions.length) {
         test.innerHTML = "<h2>You got " + correct + " of " + myQuestions.length + " questions correct</h2>";
-        get("test_status").innerHTML = "Test completed";
+        get("quiz-body").innerHTML = "Test completed";
         // resets the variable to allow users to restart the test
         pos = 0;
         correct = 0;
@@ -81,7 +109,7 @@ function renderQuestion() {
         return false;
     }
 
-    get("test_status").innerHTML = "Question " + (pos + 1) + " of " + myQuestions.length;
+    get("quiz-body").innerHTML = "Question " + (pos + 1) + " of " + myQuestions.length;
 
     question = myQuestions[pos].question;
     chA = myQuestions[pos].a;
@@ -118,4 +146,5 @@ function checkAnswer() {
     renderQuestion();
 }
 // Add event listener to call renderQuestion on page load event
-window.addEventListener("load", renderQuestion);
+//window.addEventListener("load", renderQuestion);
+startBtn.onclick = timer;

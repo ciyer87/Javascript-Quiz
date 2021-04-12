@@ -3,6 +3,65 @@ body{
     font-family: sans-serif;
     color: #333;
   }
+
+  header{
+    padding: 20px 35px;
+    background-color: #E5FCE3;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+header h1{
+  font-weight: bold;
+  font-size: 36px;
+  color: #000000;
+  margin: 0;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+header a {
+  color: #000000;
+  text-decoration: none;
+}
+header nav{
+  margin: 7px 0;
+}
+header nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  list-style-type: none;
+}
+header nav ul li a{
+  padding: 10px 15px;
+  font-weight: lighter;
+  font-size: 1.55vw;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.quiz-wrapper{
+  text-align: center;
+  margin: 0 auto;
+  max-width: 700px;
+}
+.countdown{ 
+  text-align: center;
+  display: none;
+}
+.quiz-question{
+  color: var(--primary-color);
+}
+.quiz-body{
+  color: var(--primary-color);
+  text-align: left;
+  height: 380px;
+}
+.timer{
+  font-size: 14px;
+  font-weight: bold;
+  padding-top: 12px;
+}
   
   /* background color for the question / answer container */
   #test{
