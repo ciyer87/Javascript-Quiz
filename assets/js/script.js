@@ -98,7 +98,8 @@ function timer() {
     renderQuestion();
 }
 
-// this function renders a question for display on the page
+// this function first checks to see if the quiz is ended and displays appropriate message to users. 
+//if not, the quiz questions will be displayed on the screen.
 function renderQuestion() {
     test = get("quiz-body");
     if (pos >= myQuestions.length) {

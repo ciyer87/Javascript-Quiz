@@ -3,7 +3,7 @@ body{
     font-family: sans-serif;
     color: #333;
   }
-
+/* Header style start */
   header{
     padding: 20px 35px;
     background-color: #E5FCE3;
@@ -11,7 +11,6 @@ body{
     justify-content: space-between;
     flex-wrap: wrap;
 }
-
 header h1{
   font-weight: bold;
   font-size: 36px;
@@ -38,15 +37,23 @@ header nav ul li a{
   font-weight: lighter;
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
-
+/* header style end */
+/* timer style start */
+.countdown{ 
+  text-align: center;
+  display: none;
+}
+.timer{
+  font-size: 20px;
+  font-weight: bold;
+  padding-top: 12px;
+}
+/* timer style end */
+/* quiz content container style start */
 .quiz-wrapper{
   text-align: center;
   margin: 0 auto;
   max-width: 700px;
-}
-.countdown{ 
-  text-align: center;
-  display: none;
 }
 .quiz-question{
   color: var(--primary-color);
@@ -55,14 +62,8 @@ header nav ul li a{
   color: var(--primary-color);
   text-align: left;
   height: 380px;
-}
-.timer{
-  font-size: 20px;
-  font-weight: bold;
-  padding-top: 12px;
-}
-  
-  /* background color for the question / answer container */
+} 
+/* background color for the question / answer container */
   #test{
     border:#5AB029 3px solid;
     padding:10px 40px 40px 40px;
@@ -89,8 +90,9 @@ header nav ul li a{
   #submit:hover{
     background-color: #3a8;
   }
-
-  .highscore{
+  /* quiz container style end */
+ /* style start for the initial input form */
+.highscore{
     display: none;
 }
   #highscore{
@@ -101,7 +103,8 @@ header nav ul li a{
   border-radius: 10px;
   padding: 10px;
 }
-
+/* style end for the initial input form */
+/* button style start */
   .btn {
   margin-left: 10px;
   padding: 10px;
@@ -117,6 +120,8 @@ header nav ul li a{
 .btn:active {
   background-color: #3a8;
 }
+/* button style end */
+/* high score style end */
 .score-header{
      text-align: center;
      background-color: #351c75;
@@ -143,3 +148,4 @@ header nav ul li a{
 .status h2 {
   font-size: 20px;
 }
+/* high score style end */
