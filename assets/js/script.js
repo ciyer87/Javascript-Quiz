@@ -19,6 +19,7 @@ var timeLeft = 0;
 var formEl = document.querySelector("#highscore");
 var highscoreEl = document.querySelector("#highscore-panel")
 
+
 // this is a multidimensional array with 5 inner array elements with 6 elements inside them 
 var myQuestions = [
     {
@@ -75,7 +76,7 @@ var myQuestions = [
 function get(x) {
     return document.getElementById(x);
 }
-quizEl.textContent = "Try to answer the following code related questions within the time limit.  Keep in mind that incorrect answers will penalize your score / time by ten seconds!";
+quizEl.textContent = "Try to answer the following code related questions within the time limit.  Keep in mind that unanswered and/or incorrect answers will penalize your score / time by ten seconds!";
 
 // timer function to run in parallel with the quiz
 function timer() {
@@ -132,17 +133,21 @@ function renderQuestion() {
     test.innerHTML += "<label> <input type='radio' name='choices' value='C'> " + chC + "</label><br>";
     test.innerHTML += "<label> <input type='radio' name='choices' value='D'> " + chD + "</label><br><br>";
     test.innerHTML += "<button onclick='checkAnswer()'>Submit Answer</button>";
+
 }
 
 //funciton to validate the users repsonse with actual response
+// use getElementsByName because we have an array which it will loop through
+
+
 function checkAnswer() {
-    // use getElementsByName because we have an array which it will loop through
     choices = document.getElementsByName("choices");
     for (var i = 0; i < choices.length; i++) {
         if (choices[i].checked) {
             choice = choices[i].value;
         }
     }
+
     // checks if answer matches the correct choice
     if (choice === myQuestions[pos].answer) {
         //each time there is a correct answer this value increases
@@ -166,9 +171,12 @@ var endGame = function (timeLeft) {
 }
 
 //function to record highscore of the user by using local storage
+
 var recordHighScores = function () {
     event.preventDefault();
     var playerInput = document.querySelector("input[name='player-initials']").value;
+    var list = JSON.parse(localStorage.getItem('scores')) || [];
+
     // Check if input values are empty strings
     if (!playerInput) {
         alert("Please enter your name or initals!");
@@ -184,7 +192,9 @@ var recordHighScores = function () {
         name: playerInput,
         score: timeLeft
     }
+
     localStorage.setItem('scores', JSON.stringify(highscore));
+
     showHighScores();
 };
 
@@ -198,6 +208,7 @@ var showHighScores = function () {
     }
     savedScores = JSON.parse(savedScores);
     //display score.  when user clicks on go back, restart quiz. clear high score clears the score from local storage
+
     quizEl.innerHTML = "<h2 class='score-header'>High Scores!</h2>" +
         "<div class='score-list'>1) " + savedScores.name + " &ndash; " + savedScores.score + "</div>" +
         "<div class='score-buttons'>" +
